@@ -158,7 +158,106 @@ public class Gerente {
         return null;
     }
 
-    //public boolean 
+    public void exibirCliente () {
+        Cliente clienteEncontrado = consultarCliente();
+
+        if (clienteEncontrado == null) {
+            System.out.println("O cliente procurado não foi encontrado");
+        }
+    } 
+
+    public void alterarLimiteDoChequeEspecial () {
+        int opcao;
+
+        Cliente clienteEncontrado = consultarCliente();
+
+        double valor = lerValorMonetario("Valor a ser acrescido ou removido do cheque especial: ");
+
+        do {
+            opcao = lerValorInteiro("1- Aumentar limite\n2- Diminuir limite\n");
+        } while(opcao != 1 && opcao != 2);
+        
+        if (opcao == 1) {
+            clienteEncontrado.saldo += valor;
+
+            System.out.println("Valor removido do cheque especial");
+        } else {
+            clienteEncontrado.saldo -= valor;
+
+            System.out.println("Valor acrescido no cheque especial");
+        }
+    }
+
+    public boolean transferirValor (Cliente transferidor, Cliente receptor, double valorTransferido) {
+        if (transferidor.saldo >= valorTransferido) {
+            transferidor.saldo -= valorTransferido;
+
+            receptor.saldo += valorTransferido;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void fazerTransferencia () {
+        Cliente transferidor;
+        Cliente receptor;
+
+        do {
+            System.out.println("Insira os dados do cliente a transferir o valor.");
+
+            transferidor = consultarCliente();
+        } while (transferidor == null);
+
+        do {
+            System.out.println("Insira os dados do cliente a receber o valor.");
+
+            receptor = consultarCliente();            
+        } while (transferidor == null);
+
+        double valorTransferido = lerValorMonetario("Valor a ser transferido: ");
+        
+        boolean valorFoiTransferido = transferirValor(transferidor, receptor, valorTransferido);
+
+        if (valorFoiTransferido) {
+            System.out.println("Valor transferido com sucesso");
+        } else {
+            System.out.println("Não foi possível transferir o valor");
+        }
+    }
+
+    public void adicionarSaldo () {
+        Cliente receptor = consultarCliente();
+
+        if (receptor != null) {
+            double valorTransferido = lerValorMonetario("Valor a ser transferido: ");
+
+            receptor.saldo += valorTransferido;
+
+            System.out.println("Valor adicionado ao saldo do cliente");
+        } else {
+            System.out.println("Não foi possível inserir o valor pois o cliente não foi encontrado");
+        }
+    }
+
+    public void exibirClientes () {
+        int quantidadeNulos = 0;
+
+        for (Cliente cliente : listaClientes) {
+            if (cliente != null) {
+                System.out.println("-----------------------");
+                System.out.println(cliente);
+                System.out.println("-----------------------");
+            } else {
+                quantidadeNulos++;
+            }
+        }
+
+        if (quantidadeNulos == listaClientes.length) {
+            System.out.println("Não há nenhum cliente inserido na lista");
+        }
+    }
 
     public void mostrarMenu () {
         Scanner scan = new Scanner(System.in);
@@ -170,7 +269,7 @@ public class Gerente {
             while (true) {
                 opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n");
     
-                if (opcao < 1 || opcao > 5) {
+                if (opcao < 1 || opcao > 6) {
                     System.out.println("Escolha uma opção entre 1 e 6");
     
                     continue;
@@ -207,11 +306,24 @@ public class Gerente {
                 break;
 
                 case 3:
-                boolean clienteEncontrado = consultarCliente();
+                alterarLimiteDoChequeEspecial();
 
-                if (!clienteEncontrado) {
-                    System.out.println("O cliente procurado não foi encontrado");
-                }
+                break;
+
+                case 4:
+                fazerTransferencia();
+
+                break;
+
+                case 5:
+                adicionarSaldo();
+
+                break;
+
+                case 6:
+                exibirClientes();
+
+                break;
             }
     
             System.out.println();
