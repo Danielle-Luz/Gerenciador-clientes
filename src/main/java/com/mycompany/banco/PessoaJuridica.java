@@ -53,7 +53,7 @@ public class PessoaJuridica extends Cliente{
             sociosNomes += socio + ", ";
         }
 
-        return sociosNomes.substring(0, sociosNomes.length());
+        return sociosNomes.substring(0, sociosNomes.length() - 1);
     }
 
     public String getRazaoSocial() {

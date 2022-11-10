@@ -8,7 +8,7 @@ import javax.management.openmbean.OpenDataException;
 public class Gerente {
     private String nome;
     private Cliente[] listaClientes = new Cliente[50];
-    
+
     private String lerValorAlfanumerico (String mensagem) {
         Scanner scan = new Scanner(System.in);
 
@@ -271,7 +271,7 @@ public class Gerente {
             while (true) {
                 opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n7- Consultar cliente\n");
     
-                if (opcao < 1 || opcao > 6) {
+                if (opcao < 1 || opcao > 7) {
                     System.out.println("Escolha uma opção entre 1 e 6");
     
                     continue;
