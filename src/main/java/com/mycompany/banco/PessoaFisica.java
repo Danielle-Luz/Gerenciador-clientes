@@ -1,13 +1,11 @@
 package com.mycompany.banco;
 
-import java.util.Date;
-
 public class PessoaFisica extends Cliente {
     private String cpf;
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
 
-    public PessoaFisica(String cpf, String nome, Date dataNascimento, String numeroConta, int agencia, String telefone, double saldo, double limiteCheque) {
+    public PessoaFisica(String cpf, String nome, String dataNascimento, String numeroConta, int agencia, String telefone, double saldo, double limiteCheque) {
         super(numeroConta, agencia, telefone, saldo, limiteCheque);
         this.cpf = cpf;
         this.nome = nome;
