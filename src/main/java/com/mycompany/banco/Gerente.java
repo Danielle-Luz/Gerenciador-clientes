@@ -1,16 +1,17 @@
 package com.mycompany.banco;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import com.mycompany.banco.Cliente;
 
 import javax.management.openmbean.OpenDataException;
 
 public class Gerente {
     private String nome;
     private Cliente[] listaClientes = new Cliente[50];
-
-    Scanner scan = new Scanner(System.in);
     
     private String lerValorAlfanumerico (String mensagem) {
+        Scanner scan = new Scanner(System.in);
+
         System.out.print(mensagem);
 
         String valor = scan.nextLine();
@@ -19,6 +20,8 @@ public class Gerente {
     }
 
     private double lerValorMonetario (String mensagem) {
+        Scanner scan = new Scanner(System.in);
+
         double valor = 0;
 
         do {
@@ -29,7 +32,7 @@ public class Gerente {
 
                 break;
             } catch (InputMismatchException ex) {
-                System.out.print("Insira um valor monetário válido.");
+                System.out.println("Insira um valor monetário válido.");
             }
         } while (true);
 
@@ -37,17 +40,20 @@ public class Gerente {
     }
 
     private int lerValorInteiro (String mensagem) {
+        
         int valor = 0;
-
+        
         do {
             try {
+                Scanner scan = new Scanner(System.in);
+
                 System.out.print(mensagem);
 
                 valor = scan.nextInt();
 
                 break;
             } catch (InputMismatchException ex) {
-                System.out.print("Insira um número inteiro válido.");
+                System.out.println("Insira um número inteiro válido.");
             }
         } while (true);
 
@@ -58,7 +64,7 @@ public class Gerente {
         int tipoCliente = 0;
 
         do {
-            tipoCliente = lerValorInteiro("Tipo de cliente: 1 - Físico\n2- Jurídico");
+            tipoCliente = lerValorInteiro("Tipo de cliente:\n1 - Físico\n2- Jurídico\n");
         } while (tipoCliente != 1 && tipoCliente != 2);
 
         return tipoCliente;
@@ -77,15 +83,13 @@ public class Gerente {
     public Cliente cadastrarCliente () {
         Cliente novoCliente;
 
-        String numeroConta = lerValorAlfanumerico("Insira o nome do cliente: ");
+        String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente: ");
 
         int agencia = lerValorInteiro("Insira a agência: ");
 
         double saldo = lerValorMonetario("Insira o saldo: ");
         
         double limiteCheque = lerValorMonetario("Insira o limite do cheque: ");
-        
-        scan.nextLine();
 
         String telefone = lerValorAlfanumerico("Insira o telefone: ");
 
@@ -124,12 +128,14 @@ public class Gerente {
 
     public boolean removerCliente (String numeroConta) {
         for (int i = 0; i < listaClientes.length; i++) {
-            boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
-
-            if (numeroDaContaEhIgual) {
-                listaClientes[i] = null;
-
-                return true;
+            if (listaClientes[i] != null) {
+                boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
+    
+                if (numeroDaContaEhIgual) {
+                    listaClientes[i] = null;
+    
+                    return true;
+                }
             }
         }
 
@@ -137,12 +143,14 @@ public class Gerente {
     }
 
     public void mostrarMenu () {
+        Scanner scan = new Scanner(System.in);
+
         menu:
         do {
             int opcao = 0;
     
             while (true) {
-                opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório");
+                opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n");
     
                 if (opcao < 1 || opcao > 5) {
                     System.out.println("Escolha uma opção entre 1 e 6");
@@ -183,7 +191,7 @@ public class Gerente {
             System.out.println();
            
             do {
-                opcao = lerValorInteiro("Realizar nova operação?\n1- Sim\n2- Não");
+                opcao = lerValorInteiro("Realizar nova operação?\n1- Sim\n2- Não\n");
     
                 if (opcao == 1) continue menu;
                 else if (opcao == 2) break menu;
@@ -192,4 +200,6 @@ public class Gerente {
             } while (opcao != 1 && opcao != 2);
         } while (true);
     }
+
+    
 }
