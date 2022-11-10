@@ -201,5 +201,9 @@ public class Gerente {
         } while (true);
     }
 
-    
+    public static void main(String[] args) {
+        Gerente gerente = new Gerente();
+
+        gerente.mostrarMenu();
+    }
 }
