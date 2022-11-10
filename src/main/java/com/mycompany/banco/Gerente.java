@@ -178,13 +178,13 @@ public class Gerente {
         } while(opcao != 1 && opcao != 2);
         
         if (opcao == 1) {
-            clienteEncontrado.saldo += valor;
-
-            System.out.println("Valor removido do cheque especial");
-        } else {
-            clienteEncontrado.saldo -= valor;
+            clienteEncontrado.limiteCheque += valor;
 
             System.out.println("Valor acrescido no cheque especial");
+        } else {
+            clienteEncontrado.limiteCheque -= valor;
+            
+            System.out.println("Valor removido do cheque especial");
         }
     }
 
