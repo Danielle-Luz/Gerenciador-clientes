@@ -11,7 +11,10 @@ public class PessoaFisica extends Cliente {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
-
+    
+    public String getCpf () {
+        return this.cpf;
+    }
     
     @Override
     public String toString () {
