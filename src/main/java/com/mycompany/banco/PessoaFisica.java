@@ -41,7 +41,7 @@ public class PessoaFisica extends Cliente {
         dados += String.format("Número da conta: %d\n", this.numeroConta);
         dados += String.format("Agência: %d\n", this.agencia);
         dados += String.format("Telefone: %s\n", this.telefone);
-        dados += String.format("Telefone: %.2f\n", this.saldo);
+        dados += String.format("Saldo: %.2f\n", this.saldo);
         dados += String.format("Limite de cheque: %.2f\n", this.limiteCheque);
 
         return dados;
