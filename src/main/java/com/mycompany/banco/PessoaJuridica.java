@@ -15,38 +15,6 @@ public class PessoaJuridica extends Cliente{
         this.nomeFantasia = nomeFantasia;
     }
 
-    public boolean setSocios(String novoSocio, String antigoSocio) {
-        for (int i = 0; i < socios.length; i++) {
-            if (socios[i].equalsIgnoreCase(antigoSocio)) {
-                socios[i] = novoSocio;
-                
-                System.out.println("Sócio substituído com sucesso");
-                
-                return true;
-            }
-        }
-        
-        System.out.println("Antigo sócio não encontrado");
-        
-        return false;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
     public String getSocios() {
         String sociosNomes = "";
         for(String socio : socios) {
@@ -54,14 +22,6 @@ public class PessoaJuridica extends Cliente{
         }
 
         return sociosNomes.substring(0, sociosNomes.length() - 1);
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public String getNomeFantasia() {
-        return nomeFantasia;
     }
     
     @Override

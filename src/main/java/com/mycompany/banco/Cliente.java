@@ -7,7 +7,6 @@ public abstract class Cliente {
     String telefone;
     double saldo;
     double limiteCheque;
-    
 
     public Cliente (String numeroConta, int agencia, String telefone, double saldo, double limiteCheque) {
        this.agencia = agencia;
@@ -15,37 +14,5 @@ public abstract class Cliente {
        this.telefone = telefone;
        this.saldo = saldo;
        this.limiteCheque = limiteCheque;
-    }
-    
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public void setLimiteCheque(double limiteCheque) {
-        this.limiteCheque = limiteCheque;
-    }
-
-    public String getNumeroConta() {
-        return numeroConta;
-    }
-
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public double getLimiteCheque() {
-        return limiteCheque;
     }
 }
