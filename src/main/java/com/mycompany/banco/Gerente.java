@@ -121,4 +121,20 @@ public class Gerente {
         System.out.println("Lista cheia, não foi possível inserir o cliente");
         return false;
     }
+
+    public boolean removerCliente (String numeroConta) {
+        for (int i = 0; i < listaClientes.length; i++) {
+            boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
+
+            if (numeroDaContaEhIgual) {
+                listaClientes[i] = null;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }
