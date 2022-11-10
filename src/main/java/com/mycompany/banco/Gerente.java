@@ -20,11 +20,11 @@ public class Gerente {
     }
 
     private double lerValorMonetario (String mensagem) {
-        Scanner scan = new Scanner(System.in);
-
         double valor = 0;
-
+        
         do {
+            Scanner scan = new Scanner(System.in);
+
             try {
                 System.out.print(mensagem);
 
