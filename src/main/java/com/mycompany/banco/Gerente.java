@@ -261,6 +261,10 @@ public class Gerente {
         }
     }
 
+    public boolean validaCpf (PessoaFisica cliente) {
+        
+    }
+
     public void mostrarMenu () {
         Scanner scan = new Scanner(System.in);
 
