@@ -163,6 +163,8 @@ public class Gerente {
 
         if (clienteEncontrado == null) {
             System.out.println("O cliente procurado não foi encontrado");
+        } else {
+            System.out.println(clienteEncontrado.toString());
         }
     } 
 
@@ -267,7 +269,7 @@ public class Gerente {
             int opcao = 0;
     
             while (true) {
-                opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n");
+                opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n7- Consultar cliente\n");
     
                 if (opcao < 1 || opcao > 6) {
                     System.out.println("Escolha uma opção entre 1 e 6");
@@ -322,6 +324,11 @@ public class Gerente {
 
                 case 6:
                 exibirClientes();
+
+                break;
+
+                case 7:
+                exibirCliente();
 
                 break;
             }
