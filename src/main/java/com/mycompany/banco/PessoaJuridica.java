@@ -47,8 +47,13 @@ public class PessoaJuridica extends Cliente{
         return cnpj;
     }
 
-    public String[] getSocios() {
-        return socios;
+    public String getSocios() {
+        String sociosNomes = "";
+        for(String socio : socios) {
+            sociosNomes += socio + ", ";
+        }
+
+        return sociosNomes.substring(0, sociosNomes.length());
     }
 
     public String getRazaoSocial() {
@@ -66,6 +71,7 @@ public class PessoaJuridica extends Cliente{
         dados += String.format("CNPJ: %s\n", this.cnpj);
         dados += String.format("Razão social: %s\n", this.razaoSocial);
         dados += String.format("Nome fantasia: %s\n", this.nomeFantasia);
+        dados += String.format("Sócios: %s\n", this.getSocios());
         dados += String.format("Telefone: %s\n", this.telefone);
         dados += String.format("Número da conta: %s\n", this.numeroConta);
         dados += String.format("Agência: %d\n", this.agencia);
@@ -75,4 +81,3 @@ public class PessoaJuridica extends Cliente{
         return dados;
     }
 }
-//cnpj, nomes dos sócios(até 3), razão social e nome fantasia.
