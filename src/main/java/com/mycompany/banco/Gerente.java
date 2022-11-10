@@ -3,12 +3,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.mycompany.banco.Cliente;
 
-import javax.management.openmbean.OpenDataException;
 
 public class Gerente {
     private String nome;
     private Cliente[] listaClientes = new Cliente[50];
-
+    
     private String lerValorAlfanumerico (String mensagem) {
         Scanner scan = new Scanner(System.in);
 
@@ -146,6 +145,7 @@ public class Gerente {
         String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente procurado: ");
 
         for (int i = 0; i < listaClientes.length; i++) {
+            
             if (listaClientes[i] != null) {
                 boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
     
@@ -216,7 +216,7 @@ public class Gerente {
             System.out.println("Insira os dados do cliente a receber o valor.");
 
             receptor = consultarCliente();            
-        } while (transferidor == null);
+        } while (receptor == null);
 
         double valorTransferido = lerValorMonetario("Valor a ser transferido: ");
         
