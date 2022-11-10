@@ -142,6 +142,24 @@ public class Gerente {
         return false;
     }
 
+    public boolean consultarCliente () {
+        String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente procurado: ");
+
+        for (int i = 0; i < listaClientes.length; i++) {
+            if (listaClientes[i] != null) {
+                boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
+    
+                if (numeroDaContaEhIgual) {
+                    System.out.println(listaClientes[i]);
+    
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void mostrarMenu () {
         Scanner scan = new Scanner(System.in);
 
@@ -174,6 +192,7 @@ public class Gerente {
                 }
     
                 break;
+
                 case 2:
                 String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente a ser removido: ");
     
@@ -186,6 +205,13 @@ public class Gerente {
                 }
     
                 break;
+
+                case 3:
+                boolean clienteEncontrado = consultarCliente();
+
+                if (!clienteEncontrado) {
+                    System.out.println("O cliente procurado não foi encontrado");
+                }
             }
     
             System.out.println();
