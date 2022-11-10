@@ -142,7 +142,7 @@ public class Gerente {
         return false;
     }
 
-    public boolean consultarCliente () {
+    public Cliente consultarCliente () {
         String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente procurado: ");
 
         for (int i = 0; i < listaClientes.length; i++) {
@@ -150,15 +150,15 @@ public class Gerente {
                 boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
     
                 if (numeroDaContaEhIgual) {
-                    System.out.println(listaClientes[i]);
-    
-                    return true;
+                    return listaClientes[i];
                 }
             }
         }
 
-        return false;
+        return null;
     }
+
+    //public boolean 
 
     public void mostrarMenu () {
         Scanner scan = new Scanner(System.in);
