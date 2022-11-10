@@ -48,6 +48,4 @@ public abstract class Cliente {
     public double getLimiteCheque() {
         return limiteCheque;
     }
-    
-    
 }
