@@ -2,6 +2,8 @@ package com.mycompany.banco;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.management.openmbean.OpenDataException;
+
 public class Gerente {
     private String nome;
     private Cliente[] listaClientes = new Cliente[50];
@@ -113,12 +115,10 @@ public class Gerente {
             if (listaClientes[i] == null) {
                 listaClientes[i] = novoCliente;
 
-                System.out.println("Cliente inserido com sucesso");
                 return true;
             }
         }
 
-        System.out.println("Lista cheia, não foi possível inserir o cliente");
         return false;
     }
 
@@ -136,5 +136,60 @@ public class Gerente {
         return false;
     }
 
-
+    public void mostrarMenu () {
+        menu:
+        do {
+            int opcao = 0;
+    
+            while (true) {
+                opcao = lerValorInteiro("Bem vindo,"+ this.nome +".\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório");
+    
+                if (opcao < 1 || opcao > 5) {
+                    System.out.println("Escolha uma opção entre 1 e 6");
+    
+                    continue;
+                }
+    
+                break;
+            }
+    
+            switch(opcao) {
+                case 1: 
+                Cliente novoCliente = cadastrarCliente();
+    
+                boolean clienteFoiInserido = inserirClienteEmLista(novoCliente);
+    
+                if (clienteFoiInserido) {
+                    System.out.println("Cliente inserido com sucesso");
+                } else {
+                    System.out.println("Lista cheia, não foi possível inserir o cliente");
+                }
+    
+                break;
+                case 2:
+                String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente a ser removido: ");
+    
+                boolean clienteFoiRemovido = removerCliente(numeroConta);
+    
+                if (clienteFoiRemovido) {
+                    System.out.println("O cliente foi removido com sucesso");
+                } else {
+                    System.out.println("O cliente não foi encontrado");
+                }
+    
+                break;
+            }
+    
+            System.out.println();
+           
+            do {
+                opcao = lerValorInteiro("Realizar nova operação?\n1- Sim\n2- Não");
+    
+                if (opcao == 1) continue menu;
+                else if (opcao == 2) break menu;
+    
+                System.out.println("Selecione 1 ou 2");
+            } while (opcao != 1 && opcao != 2);
+        } while (true);
+    }
 }
