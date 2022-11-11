@@ -294,7 +294,7 @@ public class Gerente {
         }
     }
 
-    public void exibirCliente () {
+    public void exibirDadosDoCliente () {
         limparTela();
 
         Cliente clienteEncontrado = consultarCliente();
@@ -435,7 +435,7 @@ public class Gerente {
         }
     }
 
-    public void exibirClientes () {
+    public void exibirClientesCadastrados () {
         limparTela();
 
         int quantidadeNulos = 0;
@@ -520,12 +520,12 @@ public class Gerente {
                 break;
 
                 case 6:
-                exibirClientes();
+                exibirClientesCadastrados();
 
                 break;
 
                 case 7:
-                exibirCliente();
+                exibirDadosDoCliente();
 
                 break;
             }
