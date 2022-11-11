@@ -418,6 +418,18 @@ public class Gerente {
             System.out.println("Valor transferido com sucesso");
         } else {
             System.out.println("Não foi possível transferir o valor");
+
+            if (transferidor.getLimiteCheque() >= valorTransferido) {
+                System.out.println();
+
+                while (true) {
+                    int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não");
+
+                    if (opcao == 1) {
+                        //receptor.
+                    }
+                }
+            }
         }
     }
 
