@@ -397,9 +397,13 @@ public class Gerente {
             int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não");
 
             if (opcao == 1) {
+                double resto = valorTransferido - transferidor.getSaldo();
+
+                transferidor.setSaldo(0);
+
                 receptor.aumentarSaldo(valorTransferido);
 
-                transferidor.diminuirCheque(valorTransferido);
+                transferidor.diminuirCheque(resto);
 
                 break;
             } else if (opcao == 2) {

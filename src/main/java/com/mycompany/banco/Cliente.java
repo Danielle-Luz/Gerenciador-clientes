@@ -36,6 +36,10 @@ public abstract class Cliente {
         return limiteCheque;
     }
 
+    public void setSaldo (double saldo) {
+        this.saldo = saldo;
+    }
+
     public void aumentarSaldo (double valor) {
         this.saldo += valor;
     }
