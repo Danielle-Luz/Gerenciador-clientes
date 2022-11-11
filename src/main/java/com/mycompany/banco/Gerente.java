@@ -1,8 +1,6 @@
 package com.mycompany.banco;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import com.mycompany.banco.Cliente;
-
 
 public class Gerente {
     private Cliente[] listaClientes = new Cliente[50];
@@ -456,8 +454,6 @@ public class Gerente {
     }
 
     public void mostrarMenu () {
-        Scanner scan = new Scanner(System.in);
-
         menu:
         do {
             
