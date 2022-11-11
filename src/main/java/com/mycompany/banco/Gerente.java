@@ -224,7 +224,7 @@ public class Gerente {
 
         for (int i = 0; i < listaClientes.length; i++) {
             if (listaClientes[i] != null) {
-                boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
+                boolean numeroDaContaEhIgual = listaClientes[i].getNumeroConta().equals(numeroConta);
     
                 if (numeroDaContaEhIgual) {
                     listaClientes[i] = null;
@@ -243,7 +243,7 @@ public class Gerente {
         for (int i = 0; i < listaClientes.length; i++) {
             
             if (listaClientes[i] != null) {
-                boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
+                boolean numeroDaContaEhIgual = listaClientes[i].getNumeroConta().equals(numeroConta);
     
                 if (numeroDaContaEhIgual) {
                     return listaClientes[i];
@@ -392,6 +392,24 @@ public class Gerente {
         return false;
     }
 
+    public void transferirComCheque (double valorTransferido, Cliente transferidor, Cliente receptor) {
+        while (true) {
+            int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não");
+
+            if (opcao == 1) {
+                receptor.aumentarSaldo(valorTransferido);
+
+                transferidor.diminuirCheque(valorTransferido);
+
+                break;
+            } else if (opcao == 2) {
+                break;
+            } else {
+                System.out.println("Insira 1 ou 2");
+            }
+        }
+    }
+
     public void fazerTransferencia () {
         limparTela();
 
@@ -420,15 +438,7 @@ public class Gerente {
             System.out.println("Não foi possível transferir o valor");
 
             if (transferidor.getLimiteCheque() >= valorTransferido) {
-                System.out.println();
-
-                while (true) {
-                    int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não");
-
-                    if (opcao == 1) {
-                        //receptor.
-                    }
-                }
+                transferirComCheque(valorTransferido, transferidor, receptor);
             }
         }
     }

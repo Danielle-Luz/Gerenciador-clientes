@@ -49,11 +49,11 @@ public class PessoaJuridica extends Cliente{
         dados += String.format("Razão social: %s\n", this.razaoSocial);
         dados += String.format("Nome fantasia: %s\n", this.nomeFantasia);
         dados += String.format("Sócios: %s\n", this.getSocios());
-        dados += String.format("Telefone: %s\n", this.telefone);
-        dados += String.format("Número da conta: %s\n", this.numeroConta);
-        dados += String.format("Agência: %d\n", this.agencia);
-        dados += String.format("Saldo: %.2f\n", this.saldo);
-        dados += String.format("Limite de cheque: %.2f\n", this.limiteCheque);
+        dados += String.format("Telefone: %s\n", this.getTelefone());
+        dados += String.format("Número da conta: %s\n", this.getNumeroConta());
+        dados += String.format("Agência: %d\n", this.getAgencia());
+        dados += String.format("Saldo: %.2f\n", this.getSaldo());
+        dados += String.format("Limite de cheque: %.2f\n", this.getLimiteCheque());
 
         return dados;
     }
