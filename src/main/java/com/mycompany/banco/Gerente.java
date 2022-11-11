@@ -394,7 +394,7 @@ public class Gerente {
 
     public void transferirComCheque (double valorTransferido, Cliente transferidor, Cliente receptor) {
         while (true) {
-            int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não");
+            int opcao = lerValorInteiro("Deseja utilizar o cheque especial?\n1- Sim\n2- Não\n");
 
             if (opcao == 1) {
                 double resto = valorTransferido - transferidor.getSaldo();
@@ -405,6 +405,7 @@ public class Gerente {
 
                 transferidor.diminuirCheque(resto);
 
+                System.out.println("Valor transferido com sucesso");
                 break;
             } else if (opcao == 2) {
                 break;
@@ -441,7 +442,9 @@ public class Gerente {
         } else {
             System.out.println("Não foi possível transferir o valor");
 
-            if (transferidor.getLimiteCheque() >= valorTransferido) {
+            double dinheiroDisponivel = transferidor.getLimiteCheque() + transferidor.getSaldo();
+
+            if (dinheiroDisponivel >= valorTransferido) {
                 transferirComCheque(valorTransferido, transferidor, receptor);
             }
         }
