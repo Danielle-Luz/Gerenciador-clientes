@@ -2,11 +2,11 @@ package com.mycompany.banco;
 
 
 public abstract class Cliente {
-    String numeroConta;
-    int agencia;
-    String telefone;
-    double saldo;
-    double limiteCheque;
+    private String numeroConta;
+    private int agencia;
+    private String telefone;
+    private double saldo;
+    private double limiteCheque;
 
     public Cliente (String numeroConta, int agencia, String telefone, double saldo, double limiteCheque) {
        this.agencia = agencia;
@@ -35,4 +35,20 @@ public abstract class Cliente {
     public double getLimiteCheque() {
         return limiteCheque;
     }
-}
+
+    public void aumentarSaldo (double valor) {
+        this.saldo += valor;
+    }
+
+    public void diminuirSaldo (double valor) {
+        this.saldo -= valor;
+    }
+
+    public void aumentarCheque (double valor) {
+        this.limiteCheque += valor;
+    }
+
+    public void diminuirCheque (double valor) {
+        this.limiteCheque -= valor;
+    }
+ }
