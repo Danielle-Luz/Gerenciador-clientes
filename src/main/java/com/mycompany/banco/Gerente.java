@@ -69,6 +69,91 @@ public class Gerente {
         return tipoCliente;
     }
 
+    private boolean validaDigito (int inicial, int digitoVerificador, int[]digitosNumericos) {
+        int soma = 0;
+
+        for (int fator = inicial, i = 0; fator <= 2; fator--, i++) {
+            soma += digitosNumericos[i] * fator;
+        }
+
+        double valorComparado = 0;
+
+        double restoDivisao = (soma * 10) % 11;
+
+        if (restoDivisao != 10 && restoDivisao != 11) {
+            valorComparado = restoDivisao;
+        }
+
+        if (valorComparado == digitoVerificador) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private int[] obterArrayDeNumeros (String[] digitosString) {
+        int[] digitosNumericos = new int[digitosString.length];
+
+        for (int i = 0; i < digitosString.length; i++) {
+            digitosNumericos[i] = Integer.parseInt(digitosString[i]);
+        }
+
+        return digitosNumericos;
+    }
+
+    public boolean validaAutenticidadeCpf (String cpf) {
+        String[] digitosString = cpf.substring(0, 9).split("");
+
+        int digitoVerificadorUm = Integer.parseInt(cpf.split("")[9]);
+        int digitoVerificadorDois = Integer.parseInt(cpf.split("")[10]);
+
+        int[] digitosNumericos = obterArrayDeNumeros(digitosString);
+
+        boolean primeiroDigitoEhValido = validaDigito(10, digitoVerificadorUm, digitosNumericos);
+        boolean segundoDigitoEhValido = validaDigito(11, digitoVerificadorDois, digitosNumericos);
+
+        boolean cpfEhValido = primeiroDigitoEhValido && segundoDigitoEhValido;
+        
+        return cpfEhValido;
+    }
+
+    public String validaDigitosDoCpf () {
+        while (true) {
+            String cpf = lerValorAlfanumerico("Insira o CPF: ");
+
+            if (cpf.matches("[a-zA-Z]")) {
+                System.out.println("O CPF deve possuir apenas números");
+
+                continue;
+            }
+
+            if (cpf.length() != 11) {
+                System.out.println("O CPF deve ter 11 dígitos");
+
+                continue;
+            }
+
+            return cpf;
+        }
+    }
+
+    public String validaCpf () {
+        while (true) {
+            String cpf = validaDigitosDoCpf();
+
+            boolean cpfEhValido = validaAutenticidadeCpf(cpf);
+
+            if (!cpfEhValido) {
+                System.out.println("Digite um CPF verdadeiro");
+
+                continue;
+            }
+
+            return cpf;
+        }
+
+    }
+    
     private String[] lerSocios () {
         String[] socios = new String[3];
 
@@ -95,7 +180,8 @@ public class Gerente {
         int tipoCliente = lerTipoCliente();
 
         if (tipoCliente == 1) {
-            String cpf = lerValorAlfanumerico("Insira o CPF: ");
+
+            String cpf = validaCpf();
             String nome = lerValorAlfanumerico("Insira o nome do cliente: ");
             String dataNascimento = lerValorAlfanumerico("Insira a data de nascimento do cliente: ");
 
@@ -259,10 +345,6 @@ public class Gerente {
         if (quantidadeNulos == listaClientes.length) {
             System.out.println("Não há nenhum cliente inserido na lista");
         }
-    }
-
-    public boolean validaCpf (PessoaFisica cliente) {
-        
     }
 
     public void mostrarMenu () {
