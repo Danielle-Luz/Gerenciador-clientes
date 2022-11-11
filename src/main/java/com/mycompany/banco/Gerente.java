@@ -123,7 +123,7 @@ public class Gerente {
         while (true) {
             String cpf = lerValorAlfanumerico("Insira o CPF: ");
 
-            if (cpf.matches("[a-zA-Z]")) {
+            if (!cpf.matches("^[0-9]+$")) {
                 System.out.println("O CPF deve possuir apenas números");
 
                 continue;
