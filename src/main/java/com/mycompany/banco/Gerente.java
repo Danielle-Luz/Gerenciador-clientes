@@ -370,21 +370,21 @@ public class Gerente {
         } while(opcao != 1 && opcao != 2);
         
         if (opcao == 1) {
-            clienteEncontrado.limiteCheque += valor;
+            clienteEncontrado.aumentarCheque(valor);;
 
             System.out.println("Valor acrescido no cheque especial");
         } else {
-            clienteEncontrado.limiteCheque -= valor;
+            clienteEncontrado.diminuirCheque(valor);
             
             System.out.println("Valor removido do cheque especial");
         }
     }
 
     public boolean transferirValor (Cliente transferidor, Cliente receptor, double valorTransferido) {
-        if (transferidor.saldo > valorTransferido) {
-            transferidor.saldo -= valorTransferido;
+        if (transferidor.getSaldo() > valorTransferido) {
+            transferidor.diminuirSaldo(valorTransferido);
 
-            receptor.saldo += valorTransferido;
+            receptor.aumentarSaldo(valorTransferido);
 
             return true;
         }
@@ -441,7 +441,7 @@ public class Gerente {
         if (receptor != null) {
             double valorTransferido = lerValorMonetario("Valor a ser transferido: ");
 
-            receptor.saldo += valorTransferido;
+            receptor.aumentarSaldo(valorTransferido);
 
             System.out.println("Valor adicionado ao saldo do cliente");
         } else {
