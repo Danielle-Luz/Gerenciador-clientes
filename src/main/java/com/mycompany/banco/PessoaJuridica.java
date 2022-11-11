@@ -17,11 +17,16 @@ public class PessoaJuridica extends Cliente{
 
     public String getSocios() {
         String sociosNomes = "";
-        for(String socio : socios) {
-            sociosNomes += socio + ", ";
+
+        for (int i = 0; i < socios.length; i++) {
+            sociosNomes += socios[i];
+
+            if (i != socios.length - 1) {
+                sociosNomes += ", ";
+            }
         }
 
-        return sociosNomes.substring(0, sociosNomes.length() - 1);
+        return sociosNomes;
     }
     
     @Override
