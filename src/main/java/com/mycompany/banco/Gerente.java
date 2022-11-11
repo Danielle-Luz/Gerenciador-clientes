@@ -379,7 +379,7 @@ public class Gerente {
     }
 
     public boolean transferirValor (Cliente transferidor, Cliente receptor, double valorTransferido) {
-        if (transferidor.saldo >= valorTransferido) {
+        if (transferidor.saldo > valorTransferido) {
             transferidor.saldo -= valorTransferido;
 
             receptor.saldo += valorTransferido;
