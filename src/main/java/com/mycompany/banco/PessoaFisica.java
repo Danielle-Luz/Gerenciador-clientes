@@ -21,7 +21,7 @@ public class PessoaFisica extends Cliente {
         String dados = "";
 
         dados += String.format("Nome: %s\n", this.nome);
-        dados += String.format("Nome: %s\n", this.cpf);
+        dados += String.format("CPF: %s\n", this.cpf);
         dados += String.format("Data de nascimento: %s\n", this.dataNascimento);
         dados += String.format("Número da conta: %s\n", this.numeroConta);
         dados += String.format("Agência: %d\n", this.agencia);
