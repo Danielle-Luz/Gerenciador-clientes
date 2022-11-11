@@ -1,0 +1,25 @@
+-Cadastre um cliente PJ (cheque especial = 1000)
+-Cadastre um cliente PF (cheque especial = 0)
+-Adicione 400 de saldo para o cliente PF
+-Transfira 300 do cliente PF para o PJ
+-Imprima os clientes
+-Consulte o saldo do cliente PF
+-Altere o cheque especial do PF para 200
+-Transfira 300 do cliente PF para o PJ
+-Consulte o saldo do cliente PF
+-Consulte o saldo do cliente PJ
+-Transfira 100 do cliente PF para o PJ (operaçao deve falhar)
+-Consulte o saldo do cliente PF
+-Consulte o saldo do cliente PJ
+-Transfira 450 do cliente PJ para o cliente PF
+-Consulte o saldo do cliente PF
+-Consulte o saldo do cliente PJ
+-Adicione mais um cliente PJ
+-Remova o cliente PJ1
+-Adicione mais um cliente PF
+-Transfira 250 do cliente PF1 para o cliente PF2
+-Imprima os clientes
+-Remova o cliente PF1
+-Adicione um novo cliente PF3
+-Imprima os clientes
+-Demonstre a funcionalidade extra

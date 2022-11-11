@@ -15,6 +15,10 @@ public class PessoaJuridica extends Cliente{
         this.nomeFantasia = nomeFantasia;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
     public String getSocios() {
         String sociosNomes = "";
 
@@ -27,6 +31,14 @@ public class PessoaJuridica extends Cliente{
         }
 
         return sociosNomes;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
     }
     
     @Override

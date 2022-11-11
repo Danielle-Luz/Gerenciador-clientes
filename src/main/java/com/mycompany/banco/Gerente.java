@@ -6,6 +6,11 @@ import com.mycompany.banco.Cliente;
 
 public class Gerente {
     private Cliente[] listaClientes = new Cliente[50];
+
+    private void limparTela () {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     
     private String lerValorAlfanumerico (String mensagem) {
         Scanner scan = new Scanner(System.in);
@@ -164,6 +169,8 @@ public class Gerente {
     }
 
     public Cliente cadastrarCliente () {
+        limparTela();
+
         Cliente novoCliente;
 
         String numeroConta = lerValorAlfanumerico("Insira o número da conta do cliente: ");
@@ -211,6 +218,8 @@ public class Gerente {
     }
 
     public boolean removerCliente (String numeroConta) {
+        limparTela();
+
         for (int i = 0; i < listaClientes.length; i++) {
             if (listaClientes[i] != null) {
                 boolean numeroDaContaEhIgual = listaClientes[i].numeroConta.equals(numeroConta);
@@ -243,17 +252,111 @@ public class Gerente {
         return null;
     }
 
+    public void exibirAtributosPessoaJuridica (int opcao, PessoaJuridica clienteEncontrado) {
+        if (opcao == 1) {
+            System.out.println("Número de conta: " + clienteEncontrado.getNumeroConta());
+        } else if (opcao == 2) {
+            System.out.println("Agência: " + clienteEncontrado.getAgencia());
+        } else if (opcao == 3) {
+            System.out.println("Número de telefone: " + clienteEncontrado.getTelefone());
+        } else if (opcao == 4) {
+            System.out.println("Saldo: " + clienteEncontrado.getSaldo());
+        } else if (opcao == 5) {
+            System.out.println("Limite de cheque: " + clienteEncontrado.getLimiteCheque());
+        } else if (opcao == 6) {
+            System.out.println("CNPJ: " + clienteEncontrado.getCnpj());
+        } else if (opcao == 7) {
+            System.out.println("Razão social: " + clienteEncontrado.getRazaoSocial());
+        } else if (opcao == 8) {
+            System.out.println("Nome fantasia: " + clienteEncontrado.getNomeFantasia());
+        } else if (opcao == 9) {
+            System.out.println("Sócios: " + clienteEncontrado.getSocios());
+        }
+    }
+
+    public void exibirAtributosPessoaFisica (int opcao, PessoaFisica clienteEncontrado) {
+        if (opcao == 1) {
+            System.out.println("Número de conta: " + clienteEncontrado.getNumeroConta());
+        } else if (opcao == 2) {
+            System.out.println("Agência: " + clienteEncontrado.getAgencia());
+        } else if (opcao == 3) {
+            System.out.println("Número de telefone: " + clienteEncontrado.getTelefone());
+        } else if (opcao == 4) {
+            System.out.println("Saldo: " + clienteEncontrado.getSaldo());
+        } else if (opcao == 5) {
+            System.out.println("Limite de cheque: " + clienteEncontrado.getLimiteCheque());
+        } else if (opcao == 6) {
+            System.out.println("CPF: " + clienteEncontrado.getCpf());
+        } else if (opcao == 7) {
+            System.out.println("Nome: " + clienteEncontrado.getNome());
+        } else if (opcao == 8) {
+            System.out.println("Data de nascimento: " + clienteEncontrado.getDataNascimento());
+        }
+    }
+
     public void exibirCliente () {
+        limparTela();
+
         Cliente clienteEncontrado = consultarCliente();
+        int opcao;
 
         if (clienteEncontrado == null) {
-            System.out.println("O cliente procurado não foi encontrado");
+        System.out.println("O cliente procurado não foi encontrado");
         } else {
-            System.out.println(clienteEncontrado.toString());
+            while (true) {
+                
+                if (clienteEncontrado instanceof PessoaFisica) {
+                    System.out.println("1- Número de conta");
+                    System.out.println("2- Agência");
+                    System.out.println("3- Telefone");
+                    System.out.println("4- Saldo");
+                    System.out.println("5- Limite do cheque");
+                    System.out.println("6- CPF");
+                    System.out.println("7- Nome");
+                    System.out.println("8- Data de nascimento");
+                    
+                    opcao = lerValorInteiro("Selecione um atributo: ");
+                    
+                    if (opcao < 1 || opcao > 8) {
+                        System.out.println("Selecione um dos atributos listados");
+                        
+                        continue;
+                    }
+                    
+                    exibirAtributosPessoaFisica(opcao, (PessoaFisica) clienteEncontrado);
+                    
+                    break;
+                    
+                } else if (clienteEncontrado instanceof PessoaJuridica) {
+                    System.out.println("1- Número de conta");
+                    System.out.println("2- Agência");
+                    System.out.println("3- Telefone");
+                    System.out.println("4- Saldo");
+                    System.out.println("5- Limite do cheque");
+                    System.out.println("6- CNPJ");
+                    System.out.println("7- Razão social");
+                    System.out.println("8- Nome fantasia");
+                    System.out.println("9- Sócios");
+            
+                    opcao = lerValorInteiro("Selecione um atributo: ");
+                    
+                    if (opcao < 1 || opcao > 9) {
+                        System.out.println("Selecione um dos atributos listados");
+
+                        continue;
+                    }
+
+                    exibirAtributosPessoaJuridica(opcao, (PessoaJuridica) clienteEncontrado);
+
+                    break;
+                }
+            }
         }
     } 
 
     public void alterarLimiteDoChequeEspecial () {
+        limparTela();
+
         int opcao;
 
         Cliente clienteEncontrado = consultarCliente();
@@ -288,6 +391,8 @@ public class Gerente {
     }
 
     public void fazerTransferencia () {
+        limparTela();
+
         Cliente transferidor;
         Cliente receptor;
 
@@ -315,6 +420,8 @@ public class Gerente {
     }
 
     public void adicionarSaldo () {
+        limparTela();
+
         Cliente receptor = consultarCliente();
 
         if (receptor != null) {
@@ -329,6 +436,8 @@ public class Gerente {
     }
 
     public void exibirClientes () {
+        limparTela();
+
         int quantidadeNulos = 0;
 
         for (Cliente cliente : listaClientes) {
@@ -351,9 +460,12 @@ public class Gerente {
 
         menu:
         do {
+            
             int opcao = 0;
-    
+            
             while (true) {
+                limparTela();
+
                 opcao = lerValorInteiro("Bem vindo, gerente.\nEscolha uma opção:\n1- Cadastrar cliente\n2- Remover cliente\n3- Alterar valor do cheque especial\n4- Fazer transferência\n5- Adicionar saldo\n6- Imprimir relatório\n7- Consultar cliente\n");
     
                 if (opcao < 1 || opcao > 7) {

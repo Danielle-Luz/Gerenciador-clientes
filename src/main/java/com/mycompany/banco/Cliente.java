@@ -15,4 +15,24 @@ public abstract class Cliente {
        this.saldo = saldo;
        this.limiteCheque = limiteCheque;
     }
+
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+
+    public int getAgencia() {
+        return agencia;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public double getLimiteCheque() {
+        return limiteCheque;
+    }
 }
