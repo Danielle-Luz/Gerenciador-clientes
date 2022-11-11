@@ -74,13 +74,13 @@ public class Gerente {
     private boolean validaDigito (int inicial, int digitoVerificador, int[]digitosNumericos) {
         int soma = 0;
 
-        for (int fator = inicial, i = 0; fator <= 2; fator--, i++) {
+        for (int fator = inicial, i = 0; fator >= 2; fator--, i++) {
             soma += digitosNumericos[i] * fator;
         }
 
-        double valorComparado = 0;
+        int valorComparado = 0;
 
-        double restoDivisao = (soma * 10) % 11;
+        int restoDivisao = (soma * 10) % 11;
 
         if (restoDivisao != 10 && restoDivisao != 11) {
             valorComparado = restoDivisao;
@@ -112,6 +112,10 @@ public class Gerente {
         int[] digitosNumericos = obterArrayDeNumeros(digitosString);
 
         boolean primeiroDigitoEhValido = validaDigito(10, digitoVerificadorUm, digitosNumericos);
+
+        digitosString = cpf.substring(0, 10).split("");
+        digitosNumericos = obterArrayDeNumeros(digitosString);
+
         boolean segundoDigitoEhValido = validaDigito(11, digitoVerificadorDois, digitosNumericos);
 
         boolean cpfEhValido = primeiroDigitoEhValido && segundoDigitoEhValido;
